@@ -1,4 +1,7 @@
 import { ErrorMapper } from "utils/ErrorMapper";
+import { garbageCollectMemory } from "memory/memory.service";
+import { CreepRoles } from "creep/roles/types";
+import { runCreeps } from "creep/creep.manager";
 
 declare global {
   interface Memory {
@@ -7,7 +10,7 @@ declare global {
   }
 
   interface CreepMemory {
-    role: string;
+    role: CreepRoles;
     room: string;
     working: boolean;
   }
@@ -20,11 +23,6 @@ declare global {
 
 export const loop = ErrorMapper.wrapLoop(() => {
   console.log(`Current game tick is ${Game.time}`);
-
-  // Automatically delete memory of missing creeps
-  for (const name in Memory.creeps) {
-    if (!(name in Game.creeps)) {
-      delete Memory.creeps[name];
-    }
-  }
+  garbageCollectMemory();
+  runCreeps();
 });
