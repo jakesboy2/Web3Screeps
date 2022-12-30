@@ -1,5 +1,5 @@
 export interface ICreepRole {
-  runCreep: (creepName: string) => void;
+  runCreep: (creep: Creep) => void;
 }
 
-export type CreepRoles = "harvester";
+export type CreepRoles = "harvester" | "miner" | "worker";

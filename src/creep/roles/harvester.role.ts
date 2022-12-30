@@ -1,7 +1,7 @@
 import { ICreepRole } from "./types";
 
 export const HarvesterRole: ICreepRole = {
-  runCreep: (creepName: string) => {
-    console.log("Running harvester", creepName);
+  runCreep: (creep: Creep) => {
+    console.log("Running harvester", creep.name);
   }
 }
