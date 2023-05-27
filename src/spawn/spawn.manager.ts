@@ -1,6 +1,7 @@
 import { getOwnedRooms } from "memory/empire/memory.empire.service";
 import { getOpenSpawn, getCreepRoleToSpawn } from "./spawn.service";
 import { getRequiredEnergyForSpawn } from "creep/creep.helpers";
+import { getRoleStrategy } from "creep/types";
 
 export const runSpawns = () => {
   const ownedRooms = getOwnedRooms();
@@ -14,13 +15,11 @@ const runSpawnsForRoom = (room: Room) => {
   if (!openSpawn) return;
 
   const creepRoleToSpawn = getCreepRoleToSpawn();
-  const creepBody = [WORK, CARRY, MOVE];
+  const roleStrategy = getRoleStrategy(creepRoleToSpawn);
+
+  const creepBody = roleStrategy.getBody();
+  const creepOptions = roleStrategy.getOptions(room.name);
   const creepName = `creep-${creepRoleToSpawn}-${Game.time}`;
-  const creepOptions = {
-    memory: {
-      role: creepRoleToSpawn, room: room.name, working: false
-    }
-  };
 
   const requiredEnergy = getRequiredEnergyForSpawn(creepBody);
   if (openSpawn.room.energyAvailable < requiredEnergy) return;

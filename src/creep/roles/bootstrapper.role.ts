@@ -12,6 +12,7 @@ const computeCreepWorkingState = (creep: Creep) => {
 
 
 export const BoostrapperRole: ICreepRole = {
+  role: "bootstrapper",
   runCreep: (creep: Creep) => {
     computeCreepWorkingState(creep);
 
@@ -47,5 +48,15 @@ export const BoostrapperRole: ICreepRole = {
         creep.moveTo(closestExtension);
       }
     }
+  },
+
+  getBody: () => [WORK, CARRY, CARRY, MOVE, MOVE],
+
+  getOptions: (roomName: string) => {
+    return {
+      memory: {
+        role: "bootstrapper", room: roomName, working: false
+      }
+    };
   }
 };
