@@ -2,6 +2,7 @@ import { ErrorMapper } from "utils/ErrorMapper";
 import { garbageCollectMemory } from "memory/memory.service";
 import { CreepRoles } from "creep/roles/types";
 import { runCreeps } from "creep/creep.manager";
+import { runSpawns } from "spawn/spawn.manager";
 
 declare global {
   interface Memory {
@@ -24,5 +25,6 @@ declare global {
 export const loop = ErrorMapper.wrapLoop(() => {
   console.log(`Current game tick is ${Game.time}`);
   garbageCollectMemory();
+  runSpawns();
   runCreeps();
 });
