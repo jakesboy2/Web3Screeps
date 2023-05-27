@@ -1,12 +1,11 @@
-import { invert } from "lodash";
 import { UserException } from "utils/UserException";
-import { HarvesterRole } from "./roles/harvester.role";
+import { BoostrapperRole } from "./roles/bootstrapper.role";
 import { MinerRole } from "./roles/miner.role";
 import { CreepRoles, ICreepRole } from "./roles/types";
 import { WorkerRole } from "./roles/worker.role";
 
 export const CreepStrategyMap: {[role in CreepRoles]: ICreepRole} = {
-  harvester: HarvesterRole,
+  bootstrapper: BoostrapperRole,
   miner: MinerRole,
   worker: WorkerRole,
 };

@@ -5,11 +5,11 @@ import { getRequiredEnergyForSpawn } from "creep/creep.helpers";
 export const runSpawns = () => {
   const ownedRooms = getOwnedRooms();
   for(const room of ownedRooms) {
-    runSpawnsInRoom(room);
+    runSpawnsForRoom(room);
   }
 }
 
-const runSpawnsInRoom = (room: Room) => {
+const runSpawnsForRoom = (room: Room) => {
   const openSpawn = getOpenSpawn(room);
   if (!openSpawn) return;
 

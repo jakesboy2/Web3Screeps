@@ -5,3 +5,21 @@ export const garbageCollectMemory = () => {
     }
   }
 }
+
+export const setupMemory = () => {
+  if (!Memory.creeps) {
+    Memory.creeps = {};
+  }
+
+  if (!Memory.rooms) {
+    Memory.rooms = {};
+  }
+
+  if (!Memory.flags) {
+    Memory.flags = {};
+  }
+
+  if (!Memory.spawns) {
+    Memory.spawns = {};
+  }
+}

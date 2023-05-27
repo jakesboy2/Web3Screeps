@@ -7,5 +7,5 @@ export const getOpenSpawn = (room: Room): StructureSpawn | undefined => {
 }
 
 export const getCreepRoleToSpawn = (): CreepRoles => {
-  return "harvester";
+  return "bootstrapper";
 }
