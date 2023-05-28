@@ -51,10 +51,10 @@ export const BoostrapperRole: ICreepRole = {
 
   getBody: () => [WORK, CARRY, CARRY, MOVE, MOVE],
 
-  getOptions: (roomName: string) => {
+  getOptions: (homeRoom: string) => {
     return {
       memory: {
-        role: CreepRoles.Bootstrapper, room: roomName, working: false
+        role: CreepRoles.Bootstrapper, homeRoom, working: false
       }
     };
   }

@@ -12,7 +12,7 @@ declare global {
 
   interface CreepMemory {
     role: CreepRoles;
-    room: string;
+    homeRoom: string;
     working: boolean;
     targetId?: Id<any>;
   }

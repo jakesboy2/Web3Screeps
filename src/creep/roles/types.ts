@@ -11,6 +11,6 @@ export type CreepRoles = typeof CreepRoles[CreepRolesKeys];
 export interface ICreepRole {
   runCreep: (creep: Creep) => void;
   getBody: () => BodyPartConstant[];
-  getOptions: (roomName: string) => SpawnOptions;
+  getOptions: (homeRoom: string) => SpawnOptions;
 }
 

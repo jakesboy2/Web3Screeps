@@ -59,10 +59,10 @@ export const CarrierRole: ICreepRole = {
 
   getBody: () => [CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
 
-  getOptions: (roomName: string) => {
+  getOptions: (homeRoom: string) => {
     return {
       memory: {
-        role: CreepRoles.Carrier, room: roomName, working: false
+        role: CreepRoles.Carrier, homeRoom, working: false
       }
     };
   }

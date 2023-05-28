@@ -46,10 +46,10 @@ export const MinerRole: ICreepRole = {
 
   getBody: () => [WORK, WORK, MOVE],
 
-  getOptions: (roomName: string) => {
+  getOptions: (homeRoom: string) => {
     return {
       memory: {
-        role: CreepRoles.Miner, room: roomName, working: false
+        role: CreepRoles.Miner, homeRoom, working: false
       }
     };
   }
