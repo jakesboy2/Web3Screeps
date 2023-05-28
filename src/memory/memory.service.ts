@@ -6,7 +6,7 @@ export const garbageCollectMemory = () => {
   }
 }
 
-export const setupMemory = () => {
+export const initMemory = () => {
   if (!Memory.creeps) {
     Memory.creeps = {};
   }

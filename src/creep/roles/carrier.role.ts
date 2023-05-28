@@ -10,20 +10,28 @@ const computeCreepWorkingState = (creep: Creep) => {
   }
 };
 
+const getEnergySource = (creep: Creep): Resource<ResourceConstant> | null => {
+  return creep.pos.findClosestByRange(FIND_DROPPED_RESOURCES, {
+    filter: (resource) => {
+      return resource.resourceType === RESOURCE_ENERGY;
+    }
+  });
+};
 
-export const BoostrapperRole: ICreepRole = {
+
+export const CarrierRole: ICreepRole = {
   runCreep: (creep: Creep) => {
     computeCreepWorkingState(creep);
 
     if(creep.memory.working) {
-      const sources = creep.room.find(FIND_SOURCES);
-      const closestSource = creep.pos.findClosestByRange(sources);
-      if (!closestSource) return;
+      const energySource = getEnergySource(creep);
+      if (!energySource) return;
 
-      if (creep.pos.isNearTo(closestSource)) {
-        creep.harvest(closestSource);
-      } else {
-        creep.moveTo(closestSource);
+      if (creep.pos.isNearTo(energySource)) {
+        creep.pickup(energySource);
+      }
+      else {
+        creep.moveTo(energySource);
       }
     }
 
@@ -49,12 +57,12 @@ export const BoostrapperRole: ICreepRole = {
     }
   },
 
-  getBody: () => [WORK, CARRY, CARRY, MOVE, MOVE],
+  getBody: () => [CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
 
   getOptions: (roomName: string) => {
     return {
       memory: {
-        role: CreepRoles.Bootstrapper, room: roomName, working: false
+        role: CreepRoles.Carrier, room: roomName, working: false
       }
     };
   }

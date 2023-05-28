@@ -1,8 +1,8 @@
 import { ErrorMapper } from "utils/ErrorMapper";
-import { garbageCollectMemory, setupMemory } from "memory/memory.service";
+import { garbageCollectMemory, initMemory } from "memory/memory.service";
 import { CreepRoles } from "creep/roles/types";
 import { runCreeps } from "creep/creep.manager";
-import { runSpawns } from "spawn/spawn.manager";
+import { runRooms } from "room/room.manager";
 
 declare global {
   interface Memory {
@@ -14,6 +14,7 @@ declare global {
     role: CreepRoles;
     room: string;
     working: boolean;
+    targetId?: Id<any>;
   }
   namespace NodeJS {
     interface Global {
@@ -23,8 +24,8 @@ declare global {
 }
 
 export const loop = ErrorMapper.wrapLoop(() => {
-  setupMemory();
+  initMemory();
   garbageCollectMemory();
-  runSpawns();
+  runRooms();
   runCreeps();
 });
