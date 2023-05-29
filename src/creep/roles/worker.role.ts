@@ -33,6 +33,17 @@ export const WorkerRole: ICreepRole = {
     computeCreepWorkingState(creep);
 
     if(creep.memory.working) {
+      const constructionSite = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+      if (constructionSite) {
+        if(creep.pos.inRangeTo(constructionSite, 3)) {
+          creep.build(constructionSite);
+        }
+        else {
+          creep.moveTo(constructionSite);
+        }
+        return;
+      }
+
       const controller = creep.room.controller;
       if(!controller) return;
 
